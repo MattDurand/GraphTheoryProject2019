@@ -2,7 +2,7 @@
 
 # Shunting Yard Algorithm
 # http://www.oxfordmathcenter.com/drupal7/node/628
-# https://web.microsoftstream.com/video/cfc9f4a2-d34f-4cde-afba-063797493a90?referrer=https:%2F%2Flearnonline.gmit.ie%2Fcourse%2Fview.php%3Fid%3D467
+# https://web.microsoftstream.com/video/cfc9f4a2-d34f-4cde-afba-063797493a90
 
 def shunt(infix):
     # Special Character precedence
