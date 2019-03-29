@@ -88,6 +88,8 @@ def compile(pofix):
     nfastack = []
 
     for c in pofix:
+
+        # Concatonate
         if c == '.':
 
             # Pop 2 NFAs off the stack
@@ -98,6 +100,7 @@ def compile(pofix):
             # Push the new NFA to the stack
             nfastack.append(nfa(nfa1.initial, nfa2.accept))
 
+        # Or
         elif c == '|':
 
             # Pop 2 NFAs off the stack
@@ -116,6 +119,7 @@ def compile(pofix):
             # Push the new NFA to the stack
             nfastack.append(nfa(initial, accept))
 
+        # 0 or more
         elif c == '*':
 
             # Pop a single NFA from the stack
@@ -126,6 +130,22 @@ def compile(pofix):
             # Join the new initial state to nfa1s initial state and to the new accept state
             initial.edge1 = nfa1.initial
             initial.edge2 = accept
+            # Join the old accept state to the new accept state and to nfa1s initial state
+            nfa1.accept.edge1 = nfa1.initial
+            nfa1.accept.edge2 = accept
+            # Push the new NFA to the stack
+            nfastack.append(nfa(initial, accept))
+
+        # 1 or more
+        elif c == '+':
+
+            # Pop a single NFA from the stack
+            nfa1 = nfastack.pop()
+            # Create new initial and accept states
+            initial = state()
+            accept = state()
+            # Join the new initial state to nfa1s initial state
+            initial.edge1 = nfa1.initial
             # Join the old accept state to the new accept state and to nfa1s initial state
             nfa1.accept.edge1 = nfa1.initial
             nfa1.accept.edge2 = accept
