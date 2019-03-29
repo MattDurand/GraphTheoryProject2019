@@ -1,5 +1,22 @@
 # Matthew Durand G00346987 - Graph Theory Project
 
+import sys
+
+# User Input
+# https://web.microsoftstream.com/video/65df155a-ac29-460b-869d-2de6ffc6c3fc
+# https://pythonprogramminglanguage.com/input/
+
+# If user included the Regular Expression and String when running the program
+if len(sys.argv) == 3:
+    # Saves the Regular Expression and String entered by the user
+    userinfix, userstring = f"{sys.argv[1]}", f"{sys.argv[2]}"
+
+# If Regular Expression and String haven't been entered yet, prompt user for them
+elif len(sys.argv) != 3:
+    userinfix = input("Enter an Infix Regular Expression (eg a*): ")
+    userstring = input("Enter a String: ")
+
+
 # Shunting Yard Algorithm
 # http://www.oxfordmathcenter.com/drupal7/node/628
 # https://web.microsoftstream.com/video/cfc9f4a2-d34f-4cde-afba-063797493a90
@@ -182,11 +199,8 @@ def match(infix, string):
     return (nfa.accept in currentstate)
 
 
-# Sample tests
-infixes = ["a.b.c*", "a.(b|d).c*", "(a.(b|d))*", "a.(b.b)*.c"]
-strings = ["", "abc", "abbc", "abcc", "abad", "abbbc"]
+# Tuple contains the Arguments entered by the user on the command line
+test = [(userinfix, userstring)]
 
-
-for i in infixes:
-    for s in strings:
-        print(match(i, s), i, s)
+for infix, string in test:
+    print(match(infix, string), infix, string)

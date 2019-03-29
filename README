@@ -9,19 +9,25 @@ Problem Description:
 
 ##################################################################
 
-How to Run the Project
+How to Run the Project:
 
-    Clone the Repository
+Clone the Repository
 
-$ git clone https://github.com/MattDurand/GraphTheoryProject2019/
+	$ git clone https://github.com/MattDurand/GraphTheoryProject2019/
 
-    Change Directory to the Project Folder
+Change Directory to the Project Folder
 
-$ cd ./GT19
+	$ cd ./GT19
 
-    Run the Project
+Run the Project
 
-$ python GT19.py
+	$ python GT19.py
+
+Users will then be prompted to enter a Regular Expression followed by a String[0].
+
+Users may also include these arguments when the project is run[1].
+eg.	$ python GT19.py a* a
+	
 
 ###################################################################
 
@@ -33,7 +39,7 @@ A Regular Expression is a sequence of symbols and characters expressing a string
 
 Part 2: Operators or Special Characters
 
-The following Special Characters are used within the program[1].
+The following Special Characters are used within the program[2].
 
 . matches two characters. So, a.b means an a followed by a b.
 
@@ -48,20 +54,20 @@ The following Special Characters are used within the program[1].
 
 Part 3: Shunting Yard Algorithm
 
-The Shunting Yard Algorithm, created by Edsger Dijkstra converts an Infix Expression to a Postfix Expression using a stack which holds operators. The stack is used to reverse the order of the operators in the expression. Since no operator can be printed until both of its operands have appeared, it also serves as a storage structure[2].
+The Shunting Yard Algorithm, created by Edsger Dijkstra converts an Infix Expression to a Postfix Expression using a stack which holds operators. The stack is used to reverse the order of the operators in the expression. Since no operator can be printed until both of its operands have appeared, it also serves as a storage structure[3].
 
 Example: (a|b).(a*|b*) becomes ab|a*b*|.
 
-The first function (def shunt) in the project is the Shunting Yard Algorithm. In this function, special characters are given a precedence value which determines which of them are executed first, the larger the number, the higher the precedence. The program loops through each character in the string, adding special charcters to the stack and adding normal characters to Postfix Expression. If a second special character is read it goes through the stack until a character of greater precedence is read then pops the highest precedent character from the stack into the Postfix Expression. When the Infix Expression is read to completion, the Postfix Expression is returned[3].
+The first function (def shunt) in the project is the Shunting Yard Algorithm. In this function, special characters are given a precedence value which determines which of them are executed first, the larger the number, the higher the precedence. The program loops through each character in the string, adding special charcters to the stack and adding normal characters to Postfix Expression. If a second special character is read it goes through the stack until a character of greater precedence is read then pops the highest precedent character from the stack into the Postfix Expression. When the Infix Expression is read to completion, the Postfix Expression is returned[4].
 
 
 ###################################################################
 
 Part 4: Thompson's Construction
 
-Thompson's Construction, by Ken Thompson, is used to convert a Postfix Expression into a Non-deterministic Finite Automata[4]. These NFAs can be used to match strings against Regular Expressions. 
+Thompson's Construction, by Ken Thompson, is used to convert a Postfix Expression into a Non-deterministic Finite Automata[5]. These NFAs can be used to match strings against Regular Expressions. 
 
-The Thompson's Construction function (def compile) encompasses a majority of the program. The function Compiles a Postfix Regular Expression into an NFA by first creating an NFA stack to store the characters which form the NFA to be compined by operators. The program loops through the Postfix Expression and uses an if statement to check what the current character is, performing different actions based on the current character as detailed below[5].
+The Thompson's Construction function (def compile) encompasses a majority of the program. The function Compiles a Postfix Regular Expression into an NFA by first creating an NFA stack to store the characters which form the NFA to be compined by operators. The program loops through the Postfix Expression and uses an if statement to check what the current character is, performing different actions based on the current character as detailed below[6].
 
 . Concatonate:
 Two NFAs are popped off the stack. NFA1's accept state is connected to NFA2's initial state. The new NFA is pushed to the stack.
@@ -83,15 +89,17 @@ Part 5: Regular Expression Matching
 
 In this program there are two functions used to match Regular Expressions, def followes and def match. Followes is used to return the set of states that can be reached from state following E arrows, which represent empty strings. A new set us created with state as it's only member, then a for loop checks if state has an E arrow coming from it. It then checks if there is an edge1 arrow and follows it if there is. It then checks if there is an edge2 arrow and follows it if there is. The states set is returned. This set contains all possible paths from the current state.
 
-The Match function strings to Infix Regular Expressions. An Infix Regular Expression and a string are passed iinto the function and the shunt function is called to convert the Infix to Postfix and then the Postfix is passed into the compile function to produce a Non-deterministic Finite Automata. Current set of states and next set of states are created and the initial state is put into the set of current states. A for loop is then used to loop through the characters in the String. For each character, another for loop is used to loop through each state in the current state set. If the label of any states within the current states match the current character of the string use the followes function to add that state to the next state set. When the loops have finished, the current state set is set to the value of the next state set and the next state set is cleared. Finally check if any of the states within current state is the accept state[6].
+The Match function strings to Infix Regular Expressions. An Infix Regular Expression and a string are passed iinto the function and the shunt function is called to convert the Infix to Postfix and then the Postfix is passed into the compile function to produce a Non-deterministic Finite Automata. Current set of states and next set of states are created and the initial state is put into the set of current states. A for loop is then used to loop through the characters in the String. For each character, another for loop is used to loop through each state in the current state set. If the label of any states within the current states match the current character of the string use the followes function to add that state to the next state set. When the loops have finished, the current state set is set to the value of the next state set and the next state set is cleared. Finally check if any of the states within current state is the accept state[7].
 
 ###################################################################
 
 References:
 
-[1] https://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_04_01.html
-[2] http://www.oxfordmathcenter.com/drupal7/node/628
-[3] https://web.microsoftstream.com/video/cfc9f4a2-d34f-4cde-afba-063797493a90
-[4] https://swtch.com/~rsc/regexp/regexp1.html
-[5] https://web.microsoftstream.com/video/5e2a482a-b1c9-48a3-b183-19eb8362abc9
-[6] https://web.microsoftstream.com/video/6b4ba6a4-01b7-4bde-8f85-b4b96abc902a
+[0] https://pythonprogramminglanguage.com/input/
+[1] https://web.microsoftstream.com/video/65df155a-ac29-460b-869d-2de6ffc6c3fc
+[2] https://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_04_01.html
+[3] http://www.oxfordmathcenter.com/drupal7/node/628
+[4] https://web.microsoftstream.com/video/cfc9f4a2-d34f-4cde-afba-063797493a90
+[5] https://swtch.com/~rsc/regexp/regexp1.html
+[6] https://web.microsoftstream.com/video/5e2a482a-b1c9-48a3-b183-19eb8362abc9
+[7] https://web.microsoftstream.com/video/6b4ba6a4-01b7-4bde-8f85-b4b96abc902a
