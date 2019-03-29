@@ -24,12 +24,14 @@ def shunt(infix):
             # Remove '(' from stack
             stack = stack[:-1]
         elif c in specials:
+            # Compare precedence of special characters
             while stack and specials.get(c, 0) <= specials.get(stack[-1], 0):
-                # Add the last item on the stack to pofix, then Remove '(' from stack
+                # Add the last item on the stack to pofix, then Remove it from stack
                 pofix, stack = pofix + stack[-1], stack[:-1]
+            # Add character to the stack
             stack = stack + c
         else:
-            # Add character to stack
+            # Add character to Postfix Expression
             pofix = pofix + c
 
     while stack:
@@ -104,10 +106,10 @@ def compile(pofix):
             # Create new initial and accept states
             initial = state()
             accept = state()
-            # Join the new initial state to nfa1s initial state and the new accept state
+            # Join the new initial state to nfa1s initial state and to the new accept state
             initial.edge1 = nfa1.initial
             initial.edge2 = accept
-            # Join the old accept state to the new accept state and nfa1s initial state
+            # Join the old accept state to the new accept state and to nfa1s initial state
             nfa1.accept.edge1 = nfa1.initial
             nfa1.accept.edge2 = accept
             # Push the new NFA to the stack
@@ -128,6 +130,8 @@ def compile(pofix):
     return nfastack.pop()
 
 
+# https://web.microsoftstream.com/video/6b4ba6a4-01b7-4bde-8f85-b4b96abc902a
+
 def followes(state):
     """Return the set of states that can be reached from state following E arrows"""
     # Create a new set, with state as its only member
@@ -138,11 +142,11 @@ def followes(state):
     if state.label is None:
         # Check if edge1 is a state
         if state.edge1 is not None:
-            # if there's an ede1 follow it
+            # if there's an edge1 follow it
             states |= followes(state.edge1)
         # Check if edge2 is a state
         if state.edge2 is not None:
-            # if there's an ede1 follow it
+            # if there's an edge1 follow it
             states |= followes(state.edge2)
 
     # Return the set of states
