@@ -26,7 +26,8 @@ elif len(sys.argv) != 3:
 def shunt(infix):
     """The Shunting Yard Algorithm for converting infix regular expressions to postfix"""
     # Special Character precedence
-    specials = {'*': 50, '+': 50, '?': 50, '.': 40, '$': 35, '|': 30}
+    # Unary Operators have equal precedence
+    specials = {'*': 50, '+': 50, '?': 50, '{': 50, '.': 40, '$': 35, '|': 30}
 
     pofix = ""
     stack = ""
@@ -88,7 +89,8 @@ def compile(pofix):
     """Compiles a postfix regular expression into an NFA"""
     nfastack = []
 
-    for c in pofix:
+    # Enumerate is used to keep track of the index of the current character in the String
+    for i, c in enumerate(pofix):
 
         # Concatenate
         if c == '.':
@@ -183,8 +185,25 @@ def compile(pofix):
             # Push the new NFA to the stack
             nfastack.append(nfa(initial, accept))
 
-        else:
+        # {N} times
+        elif c == '{':
+            # Default value for N if none is entered
+            nvalue = 1
+            # If { is not immediately followed by }
+            # pofix[i + 1] is the index of the next character in the string
+            if pofix[i + 1] != '}':
+                # Character after { will be the value of N
+                nvalue = int(pofix[i + 1])
 
+                for n in nvalue:
+                    # Print test before beginning work on NFA
+                    print("Almost functional")
+
+            # Default nvalue is 1 so character is matched once
+            elif pofix[i + 1] == '}':
+                print("Also almost functional")
+
+        else:
             # Create new initial and accept states
             accept = state()
             initial = state()

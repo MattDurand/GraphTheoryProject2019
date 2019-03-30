@@ -33,7 +33,7 @@ eg.	$ python GT19.py a* a
 
 Part 1: Regular Expressions
 
-A Regular Expression is a sequence of symbols and characters expressing a string or pattern. Regular Expressions are constructed using operators which 	have different meanings when accompanied by other characters in the Regular Expression.
+A Regular Expression is a sequence of symbols and characters expressing a string or pattern. Regular Expressions are constructed using operators which have different meanings when accompanied by other characters in the Regular Expression.
 
 ###################################################################
 
@@ -47,7 +47,13 @@ The following Special Characters are used within the program[2].
 
 * (Kleene Star) means a character appears 0 or more times.
 
-() are used to group characters
++ means a charter appears 1 or more times.
+
+? means a charter appears 0 or 1 time.
+
+$ means a character that does not appear.
+
+() are used to group characters.
 
 
 ###################################################################
@@ -70,20 +76,28 @@ Thompson's Construction, by Ken Thompson, is used to convert a Postfix Expressio
 The Thompson's Construction function (def compile) encompasses a majority of the program. The function Compiles a Postfix Regular Expression into an NFA by first creating an NFA stack to store the characters which form the NFA to be compined by operators. The program loops through the Postfix Expression and uses an if statement to check what the current character is, performing different actions based on the current character as detailed below[7].
 
 . Concatenate:
+The previous two characters must appear togther in order.
 Two NFAs are popped off the stack. NFA1's accept state is connected to NFA2's initial state. The new NFA is pushed to the stack.
 
 | Or:
+Either of the previous two character may appear. 
 Two NFAs are popped off the stack. A new initial state is created and connected to the initial state of NFA1 and NFA2. A new accept state is created and connected to the accept state of NFA1 and NFA2. The new NFA is pushed to the stack.
 
 * (Kleene Star) 0 or More:
+The character may appear any number of times, including zero times.
 One NFA is popped off the stack. A new initial state and a new accept state are created. The new initial state is joined to the NFA's initial state and the new accept state. The old accept state is joined to the new accept state and to the NFA's initial state. The new NFA is pushed to the stack.
 
-+ 1 or More:
++ 1 or More of a Character:
+The character must appear at least once.
 One NFA is popped off the stack. A new initial state and a new accept state are created. The new initial state is joined to the NFA's initial state. The old accept state is joined to the new accept state and to the NFA's initial state. The new NFA is pushed to the stack.
 
-? 0 or 1:
-One NFA is popped off the stack. A new initial state and a new accept state are created. The new initial state is joined to the NFA's initial state and the new accept state. The old accept state is joined to the new accept state. The new NFA is pushed to the stack
+? 0 or 1 of a Character:
+The character may appear at most once, or zero times.
+One NFA is popped off the stack. A new initial state and a new accept state are created. The new initial state is joined to the NFA's initial state and the new accept state. The old accept state is joined to the new accept state. The new NFA is pushed to the stack.
 
+$ Character does not appear:
+The character must not appear.
+One NFA is popped off the stack. A new initial state and a new accept state are created. The new initial state is joined to the NFA's initial state and the new accept state. The new NFA is pushed to the stack.
 
 Regular Characters:
 A new initial and a new accept state are created. The initial state is joined to the accept state labelled by the current character. The new NFA is pushed to the stack.
