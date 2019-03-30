@@ -20,12 +20,13 @@ elif len(sys.argv) != 3:
 # Shunting Yard Algorithm
 # http://www.oxfordmathcenter.com/drupal7/node/628
 # https://web.microsoftstream.com/video/cfc9f4a2-d34f-4cde-afba-063797493a90
+# https://stackoverflow.com/questions/36870168/operator-precedence-in-regular-expressions
 
 
 def shunt(infix):
     """The Shunting Yard Algorithm for converting infix regular expressions to postfix"""
     # Special Character precedence
-    specials = {'*': 50, '.': 40, '|': 30}
+    specials = {'*': 50, '+': 50, '?': 50, '.': 40, '$': 35, '|': 30}
 
     pofix = ""
     stack = ""
@@ -89,7 +90,7 @@ def compile(pofix):
 
     for c in pofix:
 
-        # Concatonate
+        # Concatenate
         if c == '.':
 
             # Pop 2 NFAs off the stack
@@ -165,6 +166,20 @@ def compile(pofix):
             initial.edge2 = accept
             # Join the old accept state to the new accept state
             nfa1.accept.edge2 = accept
+            # Push the new NFA to the stack
+            nfastack.append(nfa(initial, accept))
+
+        # 0
+        elif c == '$':
+
+            # Pop a single NFA from the stack
+            nfa1 = nfastack.pop()
+            # Create new initial and accept states
+            initial = state()
+            accept = state()
+            # Join the new initial state to nfa1s initial state and to the new accept state
+            initial.edge1 = nfa1.initial
+            initial.edge2 = accept
             # Push the new NFA to the stack
             nfastack.append(nfa(initial, accept))
 

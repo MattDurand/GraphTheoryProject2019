@@ -30,8 +30,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GT19.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="457">
-              <caret line="242" lean-forward="true" selection-start-line="242" selection-end-line="242" />
+            <state relative-caret-position="345">
+              <caret line="184" lean-forward="true" selection-start-line="184" selection-end-line="184" />
             </state>
           </provider>
         </entry>
@@ -48,6 +48,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>current</find>
+      <find>Concatonate</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -124,15 +125,15 @@
       <workItem from="1553783846087" duration="3013000" />
       <workItem from="1553803613192" duration="1208000" />
       <workItem from="1553861954332" duration="22042000" />
-      <workItem from="1553895971593" duration="5969000" />
+      <workItem from="1553895971593" duration="10945000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49872000" />
+    <option name="totallyTimeSpent" value="54848000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="27" width="1366" height="741" extended-state="6" />
+    <frame x="0" y="27" width="1366" height="741" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20984848" />
@@ -163,17 +164,38 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/thomp.py" />
-    <entry file="file://$PROJECT_DIR$/GT19.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="242" lean-forward="true" selection-start-line="242" selection-end-line="242" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../bhhhh/GraphTheoryProject2019/GT19.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bhhhh/NFA-regexp-engine/nfaEngine/nfaEngine.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="723">
+          <caret line="175" column="34" lean-forward="true" selection-start-line="175" selection-start-column="34" selection-end-line="175" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bhhhh/NFA-regexp-engine/shunt/shunt.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="31" column="16" lean-forward="true" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bhhhh/NFA-regexp-engine/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-432">
+          <caret line="9" column="13" lean-forward="true" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GT19.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="184" lean-forward="true" selection-start-line="184" selection-end-line="184" />
         </state>
       </provider>
     </entry>
