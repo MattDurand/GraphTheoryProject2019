@@ -75,12 +75,18 @@ Two NFAs are popped off the stack. NFA1's accept state is connected to NFA2's in
 | Or:
 Two NFAs are popped off the stack. A new initial state is created and connected to the initial state of NFA1 and NFA2. A new accept state is created and connected to the accept state of NFA1 and NFA2. The new NFA is pushed to the stack.
 
-* Kleene Star:
+* (Kleene Star) 0 or More:
 One NFA is popped off the stack. A new initial state and a new accept state are created. The new initial state is joined to the NFA's initial state and the new accept state. The old accept state is joined to the new accept state and to the NFA's initial state. The new NFA is pushed to the stack.
+
++ 1 or More:
+One NFA is popped off the stack. A new initial state and a new accept state are created. The new initial state is joined to the NFA's initial state. The old accept state is joined to the new accept state and to the NFA's initial state. The new NFA is pushed to the stack.
+
+? 0 or 1:
+One NFA is popped off the stack. A new initial state and a new accept state are created. The new initial state is joined to the NFA's initial state and the new accept state. The old accept state is joined to the new accept state. The new NFA is pushed to the stack
+
 
 Regular Characters:
 A new initial and a new accept state are created. The initial state is joined to the accept state labelled by the current character. The new NFA is pushed to the stack.
-
 The NFA stack should then finally contain a single NFA of representing the entire Regular Expression.
 
 ################################################################### 
