@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bda41fc0-dde5-4c0d-93ca-73d6a29b0cee" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GT19.py" beforeDir="false" afterPath="$PROJECT_DIR$/GT19.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README" beforeDir="false" afterPath="$PROJECT_DIR$/README" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,8 +31,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GT19.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="640">
-              <caret line="40" column="29" lean-forward="true" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
+            <state relative-caret-position="3209">
+              <caret line="268" lean-forward="true" selection-start-line="268" selection-end-line="268" />
             </state>
           </provider>
         </entry>
@@ -48,6 +50,7 @@
     <findStrings>
       <find>current</find>
       <find>Concatonate</find>
+      <find>https://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_04_01.html</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -125,12 +128,12 @@
       <workItem from="1553803613192" duration="1208000" />
       <workItem from="1553861954332" duration="22042000" />
       <workItem from="1553895971593" duration="24727000" />
-      <workItem from="1554034652765" duration="6950000" />
+      <workItem from="1554034652765" duration="13682000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75580000" />
+    <option name="totallyTimeSpent" value="82312000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
@@ -194,8 +197,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GT19.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="40" column="29" lean-forward="true" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
+        <state relative-caret-position="3209">
+          <caret line="268" lean-forward="true" selection-start-line="268" selection-end-line="268" />
         </state>
       </provider>
     </entry>

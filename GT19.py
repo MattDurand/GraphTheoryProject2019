@@ -10,6 +10,7 @@ import sys
 if len(sys.argv) == 3:
     # Saves the Regular Expression and String entered by the user
     userinfix, userstring = f"{sys.argv[1]}", f"{sys.argv[2]}"
+    print(userinfix, userstring)
 
 # If Regular Expression and String haven't been entered yet, prompt user for them
 elif len(sys.argv) != 3:
@@ -20,34 +21,23 @@ elif len(sys.argv) != 3:
 # http://www.oxfordmathcenter.com/drupal7/node/628
 # https://web.microsoftstream.com/video/cfc9f4a2-d34f-4cde-afba-063797493a90
 # https://stackoverflow.com/questions/36870168/operator-precedence-in-regular-expressions
+# https://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_04_01.html
 
 
 def shunt(infix):
     """The Shunting Yard Algorithm for converting infix regular expressions to postfix"""
     # N starts off with no value
-    n = None
-    # Special Character precedence
+    # n = None
+    # Special Character Dictionary, number represents their precedence, higher number means higher precedence
     # Unary Operators have equal precedence
-    specials = {'*': 50, '+': 50, '?': 50, n: 50, '.': 40, '$': 35, '|': 30}
+    specials = {'*': 50, '+': 50, '?': 50, '.': 40, '$': 35, '|': 30}
 
     pofix = ""
     stack = ""
 
     for c in infix:
 
-        # For {N} operator, used to remove the curly brackets from the postfix regular expression
-        if c == '{':
-            # Add '{' to stack
-            stack = stack + c
-        elif c == '}':
-            while stack[-1] != '{':
-                # Add the last item on the stack to N as nchar , then Remove '{' from stack
-                pofix, stack = pofix + stack[-1], stack[:-1]
-                n = stack[-1]
-            # Remove '{' from stack
-            stack = stack[:-1]
-
-        elif c == '(':
+        if c == '(':
             # Add '(' to stack
             stack = stack + c
         elif c == ')':
@@ -56,6 +46,19 @@ def shunt(infix):
                 pofix, stack = pofix + stack[-1], stack[:-1]
             # Remove '(' from stack
             stack = stack[:-1]
+
+        # Under development, not yet functional
+        # For {N} operator, used to remove the curly brackets from the postfix regular expression
+        # elif c == '{':
+        #     # Add '{' to stack
+        #     stack = stack + c
+        # elif c == '}':
+        #     while stack[-1] != '{':
+        #         # Add the last item on the stack to N as nchar , then Remove '{' from stack
+        #         pofix, stack = pofix + stack[-1], stack[:-1]
+        #         n = stack[-1]
+        #     # Remove '{' from stack
+        #     stack = stack[:-1]
 
         elif c in specials:
             # Compare precedence of special characters
@@ -71,10 +74,8 @@ def shunt(infix):
     while stack:
         # Add the last item on the stack to pofix, then Remove '(' from stack
         pofix, stack = pofix + stack[-1], stack[:-1]
-        # Remove '(' from stack
-        stack = stack[:-1]
 
-    return pofix, n
+    return pofix
 
 
 # Thompson's Construction
@@ -266,8 +267,4 @@ def match(infix, string):
     return (nfa.accept in currentstate)
 
 
-# Tuple contains the Arguments entered by the user on the command line
-test = [(userinfix, userstring)]
-
-for infix, string in test:
-    print(match(infix, string), infix, string)
+print(" RegEx:  ", userinfix, "\n", "String: ", userstring, "\n", "Result: ", match(userinfix, userstring))
