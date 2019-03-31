@@ -33,13 +33,13 @@ eg.	$ python GT19.py a* a
 
 Part 1: Regular Expressions
 
-A Regular Expression is a sequence of symbols and characters expressing a string or pattern. Regular Expressions are constructed using operators which have different meanings when accompanied by other characters in the Regular Expression.
+A Regular Expression is a sequence of symbols and characters expressing a string or pattern. Regular Expressions are constructed using operators which have different meanings when accompanied by other characters in the Regular Expression[2].
 
 ###################################################################
 
 Part 2: Operators or Special Characters
 
-The following Special Characters are used within the program[2].
+The following Special Characters are used within the program[3]:
 
 . concatenates two characters. So, a.b means an a followed by a b.
 
@@ -56,24 +56,39 @@ $ means a character that does not appear.
 () are used to group characters.
 
 
+The following Special Characters are currently in development and not yet functional. Code relating to them in the program is for testing purposes and likely to result in a crash:
+
+{N} is used to match a character exactly N times.
+
+
+The following Special Characters have yet to be implemented, but with further development, may appear in future itterations:
+
+[] are used to represent a character class, matching any of the characters in the class ie [abcde] or [a-e] matches any character a, b, c, d, or e. Combining character class with $ could be used to match any character not listed within the class ie [a$] matches any character that is not a.
+
+\ is used as an escape character. The following special character loses it's special characteristics and is treated as a regular charcter to be matched like any other.
+
+{M,N} indicates the minimum and maximum repitions of a character. Characters which repeat between M and N times (inclusive) will be matched ie a{2, 5} will match aa, aaa, aaaa,  and aaaaa.
+
 ###################################################################
 
 Part 3: Shunting Yard Algorithm
 
-The Shunting Yard Algorithm, created by Edsger Dijkstra converts an Infix Expression to a Postfix Expression using a stack which holds operators. The stack is used to reverse the order of the operators in the expression. Since no operator can be printed until both of its operands have appeared, it also serves as a storage structure[3].
+The Shunting Yard Algorithm, created by Edsger Dijkstra converts an Infix Expression to a Postfix Expression using a stack which holds operators. The stack is used to reverse the order of the operators in the expression. Since no operator can be printed until both of its operands have appeared, it also serves as a storage structure[4].
 
 Example: (a|b).(a*|b*) becomes ab|a*b*|.
 
-The first function (def shunt) in the project is the Shunting Yard Algorithm. In this function, special characters are given a precedence[4] value which determines which of them are executed first, the larger the number, the higher the precedence. The program loops through each character in the string, adding special charcters to the stack and adding normal characters to Postfix Expression. If a second special character is read it goes through the stack until a character of greater precedence is read then pops the highest precedent character from the stack into the Postfix Expression. When the Infix Expression is read to completion, the Postfix Expression is returned[5].
+The first function (def shunt) in the project is the Shunting Yard Algorithm. In this function, special characters are given a precedence[5] value which determines which of them are executed first, the larger the number, the higher the precedence. The program loops through each character in the string, adding special charcters to the stack and adding normal characters to Postfix Expression. When brackets are read, the items in the brackets are grouped and the brackets themselves are removed from the stack, Postfix Expressions do not require brackets to group characters. If a second special character is read it goes through the stack until a character of greater precedence is read then pops the highest precedent character from the stack into the Postfix Expression. When the Infix Expression is read to completion, the Postfix Expression is returned[6].
 
+The following is under development and not yet functional:
+If curly brackets are read in, their contents are stored as N and added to the stack. The brackets are then removed from the stack. The intention here is to later use N in a for loop which concatenates a character N times, so that said character will be matched N times.
 
 ###################################################################
 
 Part 4: Thompson's Construction
 
-Thompson's Construction, by Ken Thompson, is used to convert a Postfix Expression into a Non-deterministic Finite Automata[6]. These NFAs can be used to match strings against Regular Expressions. 
+Thompson's Construction, by Ken Thompson, is used to convert a Postfix Expression into a Non-deterministic Finite Automata[7]. These NFAs can be used to match strings against Regular Expressions. 
 
-The Thompson's Construction function (def compile) encompasses a majority of the program. The function Compiles a Postfix Regular Expression into an NFA by first creating an NFA stack to store the characters which form the NFA to be compined by operators. The program loops through the Postfix Expression and uses an if statement to check what the current character is, performing different actions based on the current character as detailed below[7].
+The Thompson's Construction function (def compile) encompasses a majority of the program. The function Compiles a Postfix Regular Expression into an NFA by first creating an NFA stack to store the characters which form the NFA to be compined by operators. The program loops through the Postfix Expression and uses an if statement to check what the current character is, performing different actions based on the current character as detailed below[8].
 
 . Concatenate:
 The previous two characters must appear togther in order.
@@ -109,7 +124,7 @@ Part 5: Regular Expression Matching
 
 In this program there are two functions used to match Regular Expressions, def followes and def match. Followes is used to return the set of states that can be reached from state following E arrows, which represent empty strings. A new set us created with state as it's only member, then a for loop checks if state has an E arrow coming from it. It then checks if there is an edge1 arrow and follows it if there is. It then checks if there is an edge2 arrow and follows it if there is. The states set is returned. This set contains all possible paths from the current state.
 
-The Match function strings to Infix Regular Expressions. An Infix Regular Expression and a string are passed iinto the function and the shunt function is called to convert the Infix to Postfix and then the Postfix is passed into the compile function to produce a Non-deterministic Finite Automata. Current set of states and next set of states are created and the initial state is put into the set of current states. A for loop is then used to loop through the characters in the String. For each character, another for loop is used to loop through each state in the current state set. If the label of any states within the current states match the current character of the string use the followes function to add that state to the next state set. When the loops have finished, the current state set is set to the value of the next state set and the next state set is cleared. Finally check if any of the states within current state is the accept state[8].
+The Match function strings to Infix Regular Expressions. An Infix Regular Expression and a string are passed iinto the function and the shunt function is called to convert the Infix to Postfix and then the Postfix is passed into the compile function to produce a Non-deterministic Finite Automata. Current set of states and next set of states are created and the initial state is put into the set of current states. A for loop is then used to loop through the characters in the String. For each character, another for loop is used to loop through each state in the current state set. If the label of any states within the current states match the current character of the string use the followes function to add that state to the next state set. When the loops have finished, the current state set is set to the value of the next state set and the next state set is cleared. Finally check if any of the states within current state is the accept state[9].
 
 ###################################################################
 
@@ -117,10 +132,11 @@ References:
 
 [0] https://pythonprogramminglanguage.com/input/
 [1] https://web.microsoftstream.com/video/65df155a-ac29-460b-869d-2de6ffc6c3fc
-[2] https://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_04_01.html
-[3] http://www.oxfordmathcenter.com/drupal7/node/628
-[4] https://stackoverflow.com/questions/36870168/operator-precedence-in-regular-expressions
-[5] https://web.microsoftstream.com/video/cfc9f4a2-d34f-4cde-afba-063797493a90
-[6] https://swtch.com/~rsc/regexp/regexp1.html
-[7] https://web.microsoftstream.com/video/5e2a482a-b1c9-48a3-b183-19eb8362abc9
-[8] https://web.microsoftstream.com/video/6b4ba6a4-01b7-4bde-8f85-b4b96abc902a
+[2] Introduction To The Theory Of Computation, by Michael Sipser
+[3] https://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_04_01.html
+[4] http://www.oxfordmathcenter.com/drupal7/node/628
+[5] https://stackoverflow.com/questions/36870168/operator-precedence-in-regular-expressions
+[6] https://web.microsoftstream.com/video/cfc9f4a2-d34f-4cde-afba-063797493a90
+[7] https://swtch.com/~rsc/regexp/regexp1.html
+[8] https://web.microsoftstream.com/video/5e2a482a-b1c9-48a3-b183-19eb8362abc9
+[9] https://web.microsoftstream.com/video/6b4ba6a4-01b7-4bde-8f85-b4b96abc902a

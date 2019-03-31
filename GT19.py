@@ -16,7 +16,6 @@ elif len(sys.argv) != 3:
     userinfix = input("Enter an Infix Regular Expression (eg a*): ")
     userstring = input("Enter a String: ")
 
-
 # Shunting Yard Algorithm
 # http://www.oxfordmathcenter.com/drupal7/node/628
 # https://web.microsoftstream.com/video/cfc9f4a2-d34f-4cde-afba-063797493a90
@@ -25,15 +24,30 @@ elif len(sys.argv) != 3:
 
 def shunt(infix):
     """The Shunting Yard Algorithm for converting infix regular expressions to postfix"""
+    # N starts off with no value
+    n = None
     # Special Character precedence
     # Unary Operators have equal precedence
-    specials = {'*': 50, '+': 50, '?': 50, '{': 50, '.': 40, '$': 35, '|': 30}
+    specials = {'*': 50, '+': 50, '?': 50, n: 50, '.': 40, '$': 35, '|': 30}
 
     pofix = ""
     stack = ""
 
     for c in infix:
-        if c == '(':
+
+        # For {N} operator, used to remove the curly brackets from the postfix regular expression
+        if c == '{':
+            # Add '{' to stack
+            stack = stack + c
+        elif c == '}':
+            while stack[-1] != '{':
+                # Add the last item on the stack to N as nchar , then Remove '{' from stack
+                pofix, stack = pofix + stack[-1], stack[:-1]
+                n = stack[-1]
+            # Remove '{' from stack
+            stack = stack[:-1]
+
+        elif c == '(':
             # Add '(' to stack
             stack = stack + c
         elif c == ')':
@@ -42,6 +56,7 @@ def shunt(infix):
                 pofix, stack = pofix + stack[-1], stack[:-1]
             # Remove '(' from stack
             stack = stack[:-1]
+
         elif c in specials:
             # Compare precedence of special characters
             while stack and specials.get(c, 0) <= specials.get(stack[-1], 0):
@@ -59,7 +74,7 @@ def shunt(infix):
         # Remove '(' from stack
         stack = stack[:-1]
 
-    return pofix
+    return pofix, n
 
 
 # Thompson's Construction
@@ -184,24 +199,6 @@ def compile(pofix):
             initial.edge2 = accept
             # Push the new NFA to the stack
             nfastack.append(nfa(initial, accept))
-
-        # {N} times
-        elif c == '{':
-            # Default value for N if none is entered
-            nvalue = 1
-            # If { is not immediately followed by }
-            # pofix[i + 1] is the index of the next character in the string
-            if pofix[i + 1] != '}':
-                # Character after { will be the value of N
-                nvalue = int(pofix[i + 1])
-
-                for n in nvalue:
-                    # Print test before beginning work on NFA
-                    print("Almost functional")
-
-            # Default nvalue is 1 so character is matched once
-            elif pofix[i + 1] == '}':
-                print("Also almost functional")
 
         else:
             # Create new initial and accept states
