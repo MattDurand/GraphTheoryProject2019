@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bda41fc0-dde5-4c0d-93ca-73d6a29b0cee" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GT19.py" beforeDir="false" afterPath="$PROJECT_DIR$/GT19.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README" beforeDir="false" afterPath="$PROJECT_DIR$/README" afterDir="false" />
-    </list>
+    <list default="true" id="bda41fc0-dde5-4c0d-93ca-73d6a29b0cee" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GT19.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3209">
-              <caret line="268" lean-forward="true" selection-start-line="268" selection-end-line="268" />
+            <state relative-caret-position="496">
+              <caret line="133" column="58" selection-start-line="133" selection-start-column="58" selection-end-line="133" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -128,12 +124,12 @@
       <workItem from="1553803613192" duration="1208000" />
       <workItem from="1553861954332" duration="22042000" />
       <workItem from="1553895971593" duration="24727000" />
-      <workItem from="1554034652765" duration="13682000" />
+      <workItem from="1554034652765" duration="14336000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82312000" />
+    <option name="totallyTimeSpent" value="82966000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
@@ -197,8 +193,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GT19.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3209">
-          <caret line="268" lean-forward="true" selection-start-line="268" selection-end-line="268" />
+        <state relative-caret-position="496">
+          <caret line="133" column="58" selection-start-line="133" selection-start-column="58" selection-end-line="133" selection-end-column="58" />
         </state>
       </provider>
     </entry>
